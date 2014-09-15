@@ -37,7 +37,6 @@ class PostsController < ApplicationController
       file = Tempfile.new(["post_picture", ".#{ext}"])
       file.binmode
       file.write(Base64.decode64 data)
-      params.require(:post).permit(:name, :picture_base64, :picture)
       @post.picture = file
     end
 
@@ -86,6 +85,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :picture_base64, :picture)
+      params.require(:post).permit(:name)
     end
 end
