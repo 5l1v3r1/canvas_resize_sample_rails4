@@ -1,6 +1,6 @@
 {
   "name": "canvas_resize_sample_rails4",
-  "description": "A sample Rails app that uses Javascript canvasResize Plugin and paperclip(https://github.com/thoughtbot/paperclip) to demonstrate how to implement file resizing before upload on Rails 4.",
+  "description": "A sample Rails 4 app that uses Javascript canvasResize Plugin and paperclip to demonstrate how to implement file resizing before upload.",
   "repository": "https://github.com/champierre/canvas_resize_sample_rails4",
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
