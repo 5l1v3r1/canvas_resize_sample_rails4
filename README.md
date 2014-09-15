@@ -188,7 +188,7 @@ onclick: "clear_original_post_picture();"
 To enable to show picture, add:
 
 ```erb
-# app/views/posts/show.html.erb
+= app/views/posts/show.html.erb =
 
 <p>
   <%= image_tag @post.picture.url %>
