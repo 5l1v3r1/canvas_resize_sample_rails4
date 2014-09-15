@@ -6,7 +6,7 @@
 
 ## Sample
 
-Working sample is available at [http://canvas-resize-sample-rails4.herokuapp.com/](http://canvas-resize-sample-rails4.herokuapp.com/). 
+Working sample is available at http://canvas-resize-sample-rails4.herokuapp.com/.
 
 Please delete your photo after your testing.
 
@@ -37,11 +37,11 @@ Comment out turbolinks gem.
 # gem 'turbolinks'
 ```
 
-#### 
+####
 
 Delete:
 
-```
+```erb
 = application.html.erb =
 
 <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -50,7 +50,7 @@ Delete:
 
 and replace with:
 
-```
+```erb
 = application.html.erb =
 
 <%= stylesheet_link_tag    "application", media: "all" %>
@@ -59,7 +59,7 @@ and replace with:
 
 Delete:
 
-```
+```erb
 = application.js =
 
 //= require turbolinks
@@ -107,8 +107,8 @@ Run:
 
 Add:
 
-```
-= app/views/layouts/application.html.erb
+```erb
+= app/views/layouts/application.html.erb =
 
 <head>
   .
@@ -121,13 +121,17 @@ Add:
 
 Add:
 
-```
+```ruby
+= app/models/post.rb =
+
 attr_accessor :picture_base64
 ```
 
 and papeclip methods.
 
-```
+```ruby
+= app/models/post.rb =
+
 has_attached_file :picture,:styles => { :thumb => "100x100#" }
 validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 ```
@@ -136,8 +140,8 @@ validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
 Add:
 
-```
-= app/views/posts/_form.html.erb
+```erb
+= app/views/posts/_form.html.erb =
 
 <%- content_for :head do -%>
   <script type="text/javascript">
@@ -160,19 +164,14 @@ Add:
   function clear_original_post_picture() {
     $('input#original_post_picture').val('');
   }
-
-  function timestamp() {
-    time = new Date().getTime();
-    sessionStorage.setItem("time", time);
-  }
   </script>
 <% end %>
 ```
 
 Add:
 
-```
-= app/views/posts/_form.html.erb
+```erb
+= app/views/posts/_form.html.erb =
 
 <%= f.hidden_field :picture_base64 %>
 <%= file_field_tag 'original_post_picture' %>
@@ -180,15 +179,15 @@ Add:
 
 Modify submit tag.
 
-```
-= app/views/posts/_form.html.erb
+```erb
+= app/views/posts/_form.html.erb =
 
 onclick: "clear_original_post_picture();"
 ```
 
 To enable to show picture, add:
 
-```ruby
+```erb
 # app/views/posts/show.html.erb
 
 <p>
@@ -205,7 +204,7 @@ To enable to show picture, add:
 In create action of your controller, add:
 
 ```ruby
-# app/controllers/posts_controller.rb
+= app/controllers/posts_controller.rb =
 
 @post = Post.new(post_params)
 
@@ -223,7 +222,7 @@ end
 then, close the file at the end:
 
 ```ruby
-# app/controllers/posts_controller.rb
+= app/controllers/posts_controller.rb =
 
 file.close if params[:spot][:picture_base64].present?
 ```
