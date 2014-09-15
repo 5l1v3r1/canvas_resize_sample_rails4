@@ -188,7 +188,9 @@ onclick: "clear_original_post_picture();"
 
 To enable to show picture, add:
 
-```
+```ruby
+# app/views/posts/show.html.erb
+
 <p>
   <%= image_tag @post.picture.url %>
 </p>
@@ -202,7 +204,9 @@ To enable to show picture, add:
 
 In create action of your controller, add:
 
-```
+```ruby
+# app/controllers/posts_controller.rb
+
 @post = Post.new(post_params)
 
 if params[:post][:picture_base64].present?
@@ -218,6 +222,8 @@ end
 
 then, close the file at the end:
 
-```
+```ruby
+# app/controllers/posts_controller.rb
+
 file.close if params[:spot][:picture_base64].present?
 ```
